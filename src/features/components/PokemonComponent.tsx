@@ -2,8 +2,14 @@ import React from 'react';
 import { usePokemons } from '../../api/pokemon/api';
 import { isNullish } from '../../common/common';
 import { CardList } from './PokemonCardList';
+import { useLocation } from 'react-router-dom';
 
 export const PokemonComponent: React.FC = () => {
+  const location = useLocation();
+  console.log('HIT7 location', location);
+  const queryParams = new URLSearchParams(location.search);
+  const search = queryParams.get('search_id');
+  console.log('HIT7 search', search);
   const { listQuery, detailsQueries } = usePokemons(20, 0);
 
   if (isNullish(detailsQueries)) return <div>Loading...</div>;
