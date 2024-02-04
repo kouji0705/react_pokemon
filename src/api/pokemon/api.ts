@@ -22,10 +22,17 @@ export const usePokemon = (name: string): UseQueryResult<Pokemon, Error> => {
 
 export const getPokemons = async (
   limit = 20,
-  offset = 0
+  offset = 0,
+  searchId?: number
 ): Promise<PokemonListResponse> => {
+  const url = searchId
+    ? `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}&id=${searchId}`
+    : `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`;
   const response = await axios.get<PokemonListResponse>(
-    `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`
+    // `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`
+    // `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`
+    url
+    // `https://pokeapi.co/api/v2/pokemon/1`
   );
   return response.data;
 };
@@ -40,9 +47,9 @@ export const usePokemons = (
   offset: number,
   searchId?: number
 ): UsePokemonsResult => {
-  console.log('=======HIT8 ', limit, offset, searchId);
   const listQuery = useQuery<PokemonListResponse, Error>({
     queryKey: ['pokemonList', limit, offset, searchId],
+    // queryFn: () => getPokemons(limit, offset),
     queryFn: () => getPokemons(limit, offset),
   });
 

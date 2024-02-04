@@ -10,7 +10,6 @@ export const PokemonComponent: React.FC = () => {
   const queryParams = new URLSearchParams(location.search);
   const searchId = queryParams.get('search_id');
   console.log('HIT7 searchId', searchId);
-  // const searchIdNumber = searchId ? (searchId) : undefined;
   const searchIdNumber = searchId ? parseInt(searchId) : undefined;
   const { listQuery, detailsQueries } = usePokemons(20, 0, searchIdNumber);
 
