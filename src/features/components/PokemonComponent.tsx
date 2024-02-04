@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom';
 
 export const PokemonComponent: React.FC = () => {
   const location = useLocation();
-  console.log('HIT7 location', location);
   const queryParams = new URLSearchParams(location.search);
   const searchId = queryParams.get('search_id');
   const searchIdNumber = searchId ? parseInt(searchId) : undefined;
