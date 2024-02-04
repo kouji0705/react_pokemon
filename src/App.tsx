@@ -4,7 +4,7 @@ import PokemonComponent from './components/PokemonComponent';
 function App() {
   return (
     <div>
-      <h1>PokéAPI with TypeScript</h1>
+      <h1>ポケモン表示</h1>
       <PokemonComponent />
     </div>
   );
