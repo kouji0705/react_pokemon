@@ -1,4 +1,4 @@
-import PokemonComponent from '../components/PokemonComponent';
+import { PokemonComponent } from '../components/PokemonComponent';
 
 export const Home = () => {
   return (

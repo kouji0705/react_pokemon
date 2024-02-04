@@ -2,7 +2,7 @@ import React from 'react';
 import { usePokemons } from '../api/pokemon/api';
 import { isNullish } from '../common/common';
 
-const PokemonComponent: React.FC = () => {
+export const PokemonComponent: React.FC = () => {
   const { listQuery, detailsQueries } = usePokemons(20, 0);
 
   if (isNullish(detailsQueries)) return <div>Loading...</div>;
@@ -49,5 +49,3 @@ const PokemonComponent: React.FC = () => {
     </div>
   );
 };
-
-export default PokemonComponent;
