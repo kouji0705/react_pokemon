@@ -8,7 +8,6 @@ const PokemonComponent: React.FC = () => {
   if (isNullish(detailsQueries)) return <div>Loading...</div>;
   console.log('listQuery', listQuery);
   console.log('HIT8 detailsQueries', detailsQueries);
-  console.log('HIT9 detailsQueries', detailsQueries[0].data);
   // 一覧データのローディング中
   if (
     listQuery.isLoading ||
@@ -27,21 +26,9 @@ const PokemonComponent: React.FC = () => {
     <div>
       <h2>Pokemon List</h2>
       <ul>
-        {listQuery.data.results.map((pokemon, index) => (
+        {listQuery.data.results.map((pokemon) => (
           <li key={pokemon.name}>
-            {pokemon.name}
-            {/* 詳細データのローディング状態やエラーをハンドル */}
-            {detailsQueries[index]?.isLoading ? (
-              <span> Loading details...</span>
-            ) : detailsQueries[index]?.isError ? (
-              <span> Error loading details</span>
-            ) : (
-              <div>
-                {/* ここに詳細情報を表示 */}
-                ddd
-                {/* <p>Details: {detailsQueries[index] ?? ''}</p> */}
-              </div>
-            )}
+            <div>{pokemon.name}</div>
           </li>
         ))}
       </ul>
