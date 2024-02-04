@@ -1,7 +1,5 @@
 import React from 'react';
-import { UseQueryResult } from '@tanstack/react-query';
 import { Card } from './Card';
-import { Pokemon } from '@bgoff1/pokeapi-types';
 import { Grid } from '@mui/material';
 import { CardListProps } from '../types/cardList';
 
