@@ -1,13 +1,8 @@
 import React from 'react';
-import PokemonComponent from './components/PokemonComponent';
+import { Home } from './pages/Home';
 
 function App() {
-  return (
-    <div>
-      <h1>ポケモン表示</h1>
-      <PokemonComponent />
-    </div>
-  );
+  return <Home />;
 }
 
 export default App;
