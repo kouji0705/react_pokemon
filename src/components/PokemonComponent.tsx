@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Pokemon } from '@bgoff1/pokeapi-types';
+import { getPokemon } from '../api/pokemon';
 
 const PokemonComponent: React.FC = () => {
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
 
   useEffect(() => {
     const fetchPokemon = async () => {
-      const response = await axios.get<Pokemon>(
-        'https://pokeapi.co/api/v2/pokemon/pikachu'
-      );
-      setPokemon(response.data);
+      const res = await getPokemon('pikachu');
+      setPokemon(res);
     };
 
     fetchPokemon();
