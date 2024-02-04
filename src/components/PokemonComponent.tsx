@@ -1,19 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Pokemon } from '@bgoff1/pokeapi-types';
-import { getPokemon, usePokemon } from '../api/pokemon/api';
+import React from 'react';
+import { usePokemon } from '../api/pokemon/api';
 import { isNullish } from '../common/common';
 
 const PokemonComponent: React.FC = () => {
-  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
   const { data, error, isLoading } = usePokemon('pikachu');
-  // useEffect(() => {
-  //   const fetchPokemon = async () => {
-  //     const res = await getPokemon('pikachu');
-  //     setPokemon(res);
-  //   };
-
-  //   fetchPokemon();
-  // }, []);
 
   if (isLoading || isNullish(data)) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
