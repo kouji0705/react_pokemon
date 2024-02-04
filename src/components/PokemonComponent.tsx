@@ -25,7 +25,6 @@ const PokemonComponent: React.FC = () => {
       <h2>{pokemon.name}</h2>
       <p>身長: {pokemon.height}</p>
       <p>体重: {pokemon.weight}</p>
-      {/* 画像を表示する場合 */}
       {pokemon.sprites.front_default ? (
         <img src={pokemon.sprites.front_default} alt={pokemon.name} />
       ) : (
