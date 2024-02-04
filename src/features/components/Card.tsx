@@ -1,8 +1,4 @@
-interface CardProps {
-  id: number;
-  name: string;
-  image: string;
-}
+import { CardProps } from '../types/card';
 
 export const Card: React.FC<CardProps> = ({ id, name, image }) => {
   return (

@@ -3,10 +3,7 @@ import { UseQueryResult } from '@tanstack/react-query';
 import { Card } from './Card';
 import { Pokemon } from '@bgoff1/pokeapi-types';
 import { Grid } from '@mui/material';
-
-interface CardListProps {
-  detailsQueries: UseQueryResult<Pokemon, Error>[];
-}
+import { CardListProps } from '../types/cardList';
 
 export const CardList: React.FC<CardListProps> = ({ detailsQueries }) => {
   return (

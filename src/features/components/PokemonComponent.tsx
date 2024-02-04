@@ -1,6 +1,6 @@
 import React from 'react';
-import { usePokemons } from '../api/pokemon/api';
-import { isNullish } from '../common/common';
+import { usePokemons } from '../../api/pokemon/api';
+import { isNullish } from '../../common/common';
 import { CardList } from './PokemonCardList';
 
 export const PokemonComponent: React.FC = () => {
