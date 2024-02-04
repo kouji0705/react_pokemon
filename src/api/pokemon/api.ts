@@ -5,7 +5,7 @@ import { UseQueryResult, useQueries, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { PokemonListResponse, UsePokemonsResult } from './type';
 
-export const getPokemon = async (name: string): Promise<Pokemon> => {
+export const getPokemon = async (name: string | number): Promise<Pokemon> => {
   const response = await axios.get<Pokemon>(
     `https://pokeapi.co/api/v2/pokemon/${name}`
   );
@@ -13,7 +13,9 @@ export const getPokemon = async (name: string): Promise<Pokemon> => {
 };
 
 // ポケモンデータを取得するカスタムフック
-export const usePokemon = (name: string): UseQueryResult<Pokemon, Error> => {
+export const usePokemon = (
+  name: string | number
+): UseQueryResult<Pokemon, Error> => {
   return useQuery<Pokemon, Error>({
     queryKey: ['pokemon', name],
     queryFn: () => getPokemon(name),
@@ -24,9 +26,8 @@ export const getPokemons = async (
   limit = 20,
   offset = 0
 ): Promise<PokemonListResponse> => {
-  const response = await axios.get<PokemonListResponse>(
-    `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`
-  );
+  const url = `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`;
+  const response = await axios.get<PokemonListResponse>(url);
   return response.data;
 };
 
@@ -41,6 +42,7 @@ export const usePokemons = (
 ): UsePokemonsResult => {
   const listQuery = useQuery<PokemonListResponse, Error>({
     queryKey: ['pokemonList', limit, offset],
+    // queryFn: () => getPokemons(limit, offset),
     queryFn: () => getPokemons(limit, offset),
   });
 
