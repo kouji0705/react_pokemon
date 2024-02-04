@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { Button, TextField } from '@mui/material';
-
-interface SearchBarProps {
-  onSearch: (searchTerm: string) => void;
-}
+import { SearchBarProps } from '../types/searchBar';
 
 export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
