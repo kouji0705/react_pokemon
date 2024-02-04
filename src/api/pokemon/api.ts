@@ -25,15 +25,11 @@ export const getPokemons = async (
   offset = 0,
   searchId?: number
 ): Promise<PokemonListResponse> => {
+  console.log('=======HIT8 ', limit, offset, searchId);
   const url = searchId
     ? `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}&id=${searchId}`
-    : `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`;
-  const response = await axios.get<PokemonListResponse>(
-    // `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`
-    // `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}`
-    url
-    // `https://pokeapi.co/api/v2/pokemon/1`
-  );
+    : `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}&id=${searchId}`;
+  const response = await axios.get<PokemonListResponse>(url);
   return response.data;
 };
 
