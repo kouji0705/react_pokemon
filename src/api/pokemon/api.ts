@@ -25,7 +25,7 @@ export const getPokemons = async (
   offset = 0,
   searchId?: number
 ): Promise<PokemonListResponse> => {
-  console.log('=======HIT8 ', limit, offset, searchId);
+  console.log('=======HIT8 searchId', limit, offset, searchId);
   const url = searchId
     ? `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}&id=${searchId}`
     : `https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset}&id=${searchId}`;
@@ -46,7 +46,7 @@ export const usePokemons = (
   const listQuery = useQuery<PokemonListResponse, Error>({
     queryKey: ['pokemonList', limit, offset, searchId],
     // queryFn: () => getPokemons(limit, offset),
-    queryFn: () => getPokemons(limit, offset),
+    queryFn: () => getPokemons(limit, offset, searchId),
   });
 
   // useQueriesは常に呼び出されるが、listQuery.dataが存在する場合のみクエリが有効になる
