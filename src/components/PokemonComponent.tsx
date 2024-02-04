@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePokemon, usePokemons } from '../api/pokemon/api';
+import { usePokemons } from '../api/pokemon/api';
 import { isNullish } from '../common/common';
 
 const PokemonComponent: React.FC = () => {
