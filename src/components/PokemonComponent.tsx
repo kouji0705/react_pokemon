@@ -1,6 +1,7 @@
 import React from 'react';
 import { usePokemons } from '../api/pokemon/api';
 import { isNullish } from '../common/common';
+import { CardList } from './PokemonCardList';
 
 export const PokemonComponent: React.FC = () => {
   const { listQuery, detailsQueries } = usePokemons(20, 0);
@@ -25,27 +26,7 @@ export const PokemonComponent: React.FC = () => {
   return (
     <div>
       <h2>Pokemon List</h2>
-      <ul>
-        {detailsQueries.map((query) => {
-          if (query.isLoading || isNullish(query.data)) {
-            return <div>Loading...</div>;
-          }
-          return (
-            <li key={query.data?.id}>
-              <div>{query.data?.id}</div>
-              <div>{query.data?.name}</div>
-              {/* <img src={query.data.}></img> */}
-              <div>
-                <img
-                  // src={query.data.sprites.front_default}
-                  src={query.data.sprites.front_default || ''}
-                  alt={query.data.name}
-                />
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+      <CardList detailsQueries={detailsQueries} />
     </div>
   );
 };
