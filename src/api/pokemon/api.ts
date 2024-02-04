@@ -3,6 +3,7 @@
 import { Pokemon } from '@bgoff1/pokeapi-types';
 import { UseQueryResult, useQueries, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { PokemonListResponse, UsePokemonsResult } from './type';
 
 export const getPokemon = async (name: string): Promise<Pokemon> => {
   const response = await axios.get<Pokemon>(
@@ -29,18 +30,9 @@ export const getPokemons = async (
   return response.data;
 };
 
-interface PokemonListResponse {
-  results: Array<{ name: string; url: string }>;
-}
-
 export async function getPokemonDetails(url: string): Promise<Pokemon> {
   const { data } = await axios.get(url);
   return data;
-}
-
-interface UsePokemonsResult {
-  listQuery: UseQueryResult<PokemonListResponse, Error>; // 一覧取得のクエリ結果
-  detailsQueries: UseQueryResult<Pokemon, Error>[]; // 各ポケモンの詳細情報取得のクエリ結果の配列
 }
 
 export const usePokemons = (
@@ -63,15 +55,4 @@ export const usePokemons = (
   });
 
   return { listQuery, detailsQueries };
-  // const detailsQueries = useQueries({
-  //   queries:
-  //     listQuery.data?.results.map((pokemon) => ({
-  //       queryKey: ['pokemonDetails', pokemon.name],
-  //       queryFn: () => getPokemonDetails(pokemon.url),
-  //     })) ?? [],
-  // });
-  // return useQuery<Pokemon, Error>({
-  //   queryKey: ['pokemon', limit, offset],
-  //   queryFn: () => getPokemons(limit, offset),
-  // });
 };
