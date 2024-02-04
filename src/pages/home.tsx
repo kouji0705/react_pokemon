@@ -1,6 +1,4 @@
-import { Button, TextField } from '@mui/material';
 import { PokemonComponent } from '../features/components/PokemonComponent';
-import { useState } from 'react';
 import { SearchBar } from '../features/components/SearchBar';
 
 export const Home = () => {
