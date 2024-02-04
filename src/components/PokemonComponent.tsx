@@ -26,11 +26,25 @@ const PokemonComponent: React.FC = () => {
     <div>
       <h2>Pokemon List</h2>
       <ul>
-        {listQuery.data.results.map((pokemon) => (
-          <li key={pokemon.name}>
-            <div>{pokemon.name}</div>
-          </li>
-        ))}
+        {detailsQueries.map((query) => {
+          if (query.isLoading || isNullish(query.data)) {
+            return <div>Loading...</div>;
+          }
+          return (
+            <li key={query.data?.id}>
+              <div>{query.data?.id}</div>
+              <div>{query.data?.name}</div>
+              {/* <img src={query.data.}></img> */}
+              <div>
+                <img
+                  // src={query.data.sprites.front_default}
+                  src={query.data.sprites.front_default || ''}
+                  alt={query.data.name}
+                />
+              </div>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
