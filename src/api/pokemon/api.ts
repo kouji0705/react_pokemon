@@ -37,10 +37,12 @@ export async function getPokemonDetails(url: string): Promise<Pokemon> {
 
 export const usePokemons = (
   limit: number,
-  offset: number
+  offset: number,
+  searchId?: number
 ): UsePokemonsResult => {
+  console.log('=======HIT8 ', limit, offset, searchId);
   const listQuery = useQuery<PokemonListResponse, Error>({
-    queryKey: ['pokemonList', limit, offset],
+    queryKey: ['pokemonList', limit, offset, searchId],
     queryFn: () => getPokemons(limit, offset),
   });
 
