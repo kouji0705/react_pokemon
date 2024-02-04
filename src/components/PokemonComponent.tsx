@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Pokemon } from '@bgoff1/pokeapi-types';
-import { getPokemon } from '../api/pokemon';
+import { getPokemon } from '../api/pokemon/api';
 
 const PokemonComponent: React.FC = () => {
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
