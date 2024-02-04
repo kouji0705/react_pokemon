@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { Pokemon } from '@bgoff1/pokeapi-types';
-import { getPokemon } from '../api/pokemon/api';
+import { getPokemon, usePokemon } from '../api/pokemon/api';
+import { isNullish } from '../common/common';
 
 const PokemonComponent: React.FC = () => {
   const [pokemon, setPokemon] = useState<Pokemon | null>(null);
+  const { data, error, isLoading } = usePokemon('pikachu');
+  // useEffect(() => {
+  //   const fetchPokemon = async () => {
+  //     const res = await getPokemon('pikachu');
+  //     setPokemon(res);
+  //   };
 
-  useEffect(() => {
-    const fetchPokemon = async () => {
-      const res = await getPokemon('pikachu');
-      setPokemon(res);
-    };
+  //   fetchPokemon();
+  // }, []);
 
-    fetchPokemon();
-  }, []);
-
-  if (!pokemon) {
-    return <div>Loading...</div>;
-  }
+  if (isLoading || isNullish(data)) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div>
-      <h2>{pokemon.name}</h2>
-      <p>身長: {pokemon.height}</p>
-      <p>体重: {pokemon.weight}</p>
-      {pokemon.sprites.front_default ? (
-        <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+      <h2>{data.name}</h2>
+      <p>身長: {data.height}</p>
+      <p>体重: {data.weight}</p>
+      {data.sprites.front_default ? (
+        <img src={data.sprites.front_default} alt={data.name} />
       ) : (
         <div>画像がありません</div>
       )}
